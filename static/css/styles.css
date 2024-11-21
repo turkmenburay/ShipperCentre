@@ -1,0 +1,288 @@
+/* Import Norwester Font */
+@font-face {
+    font-family: 'Norwester';
+    src: url('../fonts/JosefinSans-VariableFont_wght.ttf') format('opentype');
+}
+
+/* Basic Reset and Body Styling */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Norwester', Arial, sans-serif;
+    background-color: #fff;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 1200px;
+    height: 100vh;
+    position: relative;
+}
+
+/* Logo */
+.logo {
+    width: 100px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+}
+
+/* Title Styling */
+.title {
+    font-size: 3em;
+    color: #000;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translateX(-50%);
+    line-height: 1.2;
+    display: inline-block;
+}
+
+/* Simulate Brush Background Effect */
+.title::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 1em;
+    z-index: -1;
+    transform: translate(-50%, -50%);
+}
+
+#slot-machine-text {
+    display: inline-block;
+    width: 400px; /* Adjusted width to fit the longest word */
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.2; /* Ensures proper line height */
+    transition: opacity 0.5s ease-in-out;
+    overflow: hidden; /* Prevent overflow from shifting elements */
+    color: #d1c4e9;
+}
+
+.fade {
+    opacity: 0;
+}
+/* Spinning Animation */
+@keyframes slot-spin {
+    0% {
+        transform: rotateX(0deg);
+        opacity: 1;
+    }
+    50% {
+        transform: rotateX(90deg);
+        opacity: 0;
+    }
+    100% {
+        transform: rotateX(0deg);
+        opacity: 1;
+    }
+}
+
+.spin {
+    animation: slot-spin 0.5s ease-in-out;
+}
+
+/* Country Selection Section */
+.selection-container {
+    position: absolute;
+    bottom: 250px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+/* Select Text and Dropdown Styling */
+.select-text, .to-text {
+    font-size: 1.2em;
+    font-weight: bold;
+    color: #000;
+}
+
+.country-dropdown {
+    padding: 15px 30px;
+    background-color: #d1c4e9;
+    color: #777;
+    font-size: 1.2em;
+    font-family: 'Norwester', Arial, sans-serif;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none; /* For Safari */
+    transition: background-color 0.3s;
+}
+
+.country-dropdown:hover {
+    background-color: #b39ddb;
+}
+
+/* Find Button Styling */
+.find-button {
+    padding: 15px 30px;
+    background-color: transparent;
+    color: #000000;
+    font-size: 1.2em;
+    font-family: 'Norwester', Arial, sans-serif;
+    border: 2px solid #000000;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.find-button:hover {
+    background-color: transparent;
+    color: #d1c4e9;
+}
+
+/* Sidebar and Comparison List Styling */
+.comparison-page {
+    display: flex;
+    margin-top: 100px;
+    padding: 20px;
+    gap: 20px;
+}
+
+/* Sidebar for Filters */
+.filter-sidebar {
+    width: 250px;
+    background-color: #f5f5f5;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.filter-sidebar h2 {
+    font-size: 1.5em;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+/* Filter Group */
+.filter-group {
+    margin-bottom: 20px;
+}
+
+.filter-group label {
+    display: block;
+    font-size: 1.1em;
+    color: #555;
+    margin-bottom: 10px;
+}
+
+.filter-group select,
+.filter-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Norwester', Arial, sans-serif;
+}
+
+/* Comparison List */
+.comparison-list {
+    flex: 1;
+}
+
+.comparison-list h2 {
+    font-size: 1.5em;
+    color: #000;
+    margin-bottom: 20px;
+}
+
+/* Shipment Option Styling */
+.shipment-option {
+    display: flex;
+    align-items: center;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+}
+
+.company-logo img {
+    width: 100px;
+    height: auto;
+    margin-right: 20px;
+}
+
+.shipment-details {
+    flex: 1;
+}
+
+.shipment-details h3 {
+    font-size: 1.3em;
+    color: #000;
+    margin-bottom: 5px;
+}
+
+.shipment-details p {
+    color: #777;
+    margin: 5px 0;
+}
+
+.price-and-book {
+    text-align: right;
+}
+
+.price {
+    font-size: 1.5em;
+    color: #d1c4e9;
+    margin-bottom: 10px;
+}
+
+.book-now {
+    padding: 10px 20px;
+    background-color: transparent;
+    color: #000000;
+    font-family: 'Norwester', Arial, sans-serif;
+    border: 2px solid #d1c4e9;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+.book-now:hover {
+    background-color: transparent;
+    color: #d1c4e9;
+}
+
+/* Animations for Slot Text */
+@keyframes fadeOut {
+    0% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.fade-out {
+    animation: fadeOut 0.5s forwards;
+}
+
+.fade-in {
+    animation: fadeIn 0.5s forwards;
+}

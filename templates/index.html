@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shipper Centre</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <!-- Logo Section -->
+        <header>
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Shipper Centre Logo" class="logo">
+        </header>
+
+        <!-- Main Content Section -->
+        <main>
+            <h1 class="title">Find the <span id="slot-machine-text">Best</span> <br>carrier for you<br>in less than 10 seconds*</h1>
+
+            <!-- Country Selection Section -->
+            <div class="selection-container">
+                <p class="select-text">Select</p>
+                <select id="origin-country" class="country-dropdown">
+                    <option value="">Origin</option>
+                </select>
+                <span class="to-text">To</span>
+                <select id="destination-country" class="country-dropdown">
+                    <option value="">Destination</option>
+                </select>
+
+                <button class="find-button" onclick="redirectToComparison()">Ship</button>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        window.onload = () => {
+            // Slot machine text effect
+            const words = ["best", "most affordable", "fastest", "most convenient"];
+            let currentIndex = 0;
+            const slotMachineText = document.getElementById('slot-machine-text');
+
+            setInterval(() => {
+                slotMachineText.classList.add('fade');
+                setTimeout(() => {
+                    currentIndex = (currentIndex + 1) % words.length;
+                    slotMachineText.textContent = words[currentIndex];
+                    slotMachineText.classList.remove('fade');
+                }, 500); // Match this duration to the CSS transition time
+            }, 2000); // Change text every 2 seconds
+
+            // Fetch distinct origin and destination countries and populate the dropdown lists
+            fetch('/api/countries')
+                .then(response => response.json())
+                .then(data => {
+                    const originSelect = document.getElementById('origin-country');
+                    const destinationSelect = document.getElementById('destination-country');
+
+                    // Populate origin countries
+                    data.origins.forEach(country => {
+                        const option = document.createElement('option');
+                        option.value = country;
+                        option.textContent = country;
+                        originSelect.appendChild(option);
+                    });
+
+                    // Populate destination countries
+                    data.destinations.forEach(country => {
+                        const option = document.createElement('option');
+                        option.value = country;
+                        option.textContent = country;
+                        destinationSelect.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error fetching countries:', error));
+        };
+
+        function redirectToComparison() {
+            const origin = document.getElementById('origin-country').value;
+            const destination = document.getElementById('destination-country').value;
+            window.location.href = `/comparison?origin=${encodeURIComponent(origin)}&destination=${encodeURIComponent(destination)}`;
+        }
+    </script>
+</body>
+</html>
