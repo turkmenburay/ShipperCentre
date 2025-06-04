@@ -3,15 +3,6 @@ const urlParams = new URLSearchParams(window.location.search);
 const initialOrigin = urlParams.get('origin');
 const initialDestination = urlParams.get('destination');
 
-setInterval(() => {
-    slotMachineText.classList.add('fade');
-    setTimeout(() => {
-        currentIndex = (currentIndex + 1) % words.length;
-        slotMachineText.textContent = words[currentIndex];
-        slotMachineText.classList.remove('fade');
-    }, 500); // Match this duration to the CSS transition time
-}, 2000);
-
 // Fetch distinct companies, origins, and destinations and populate the filters
 fetch('/api/countries')
     .then(response => response.json())
