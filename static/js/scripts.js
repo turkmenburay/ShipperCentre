@@ -96,7 +96,7 @@ function fetchShipmentData(origin, destination, company, maxPrice) {
                             <a href="${company.website_url}" target="_blank" class="more-info">More Info</a>
                         </div>
                         <div class="price-and-book">
-                            <p class="price">$${company.price.toFixed(2)}</p>
+                            <p class="price">${company.price.toFixed(2)}</p>
                             <button class="book-now">Book Now</button>
                         </div>
                     `;
